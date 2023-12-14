@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth')->group(function () {
+        Route::get('/', [ShopController::class, 'index']);
 });
+// Route::get('/', [ShopController::class, 'index']);
+Route::get('/upload_form', [ShopController::class, 'uploadForm']);
+Route::post('/upload', [ShopController::class, 'upload'])->name('upload');

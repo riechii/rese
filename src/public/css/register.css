@@ -1,0 +1,50 @@
+.register {
+    width: 100%;
+    height: 100%;
+    background-color: #EEEEEE;
+    padding: 20px;
+    padding-bottom: 300px;
+}
+
+.register_content {
+    width: 400px;
+    height: 230px;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 0 0 3px 3px;
+    box-shadow: 5px 5px 3px #a9a9a9;
+}
+
+.register_ttl {
+    text-align: left;
+    color: #fff;
+    background-color: #3366ff;
+    border-radius: 3px 3px 0 0;
+    padding: 10px 20px;
+}
+
+.register-input {
+    border: none;
+    border-bottom: 1px solid #999;
+    width: 300px;
+
+}
+
+.register-input-container {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.register__btn {
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 25px;
+}
+
+.register__btn__submit {
+    color: #fff;
+    background-color: #3366ff;
+    border: 1px solid #3366ff;
+    border-radius: 3px;
+    padding: 3px 10px;
+}

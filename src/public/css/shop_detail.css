@@ -1,0 +1,105 @@
+.shop_detail {
+    width: 100%;
+    height: 100%;
+    background-color: #EEEEEE;
+    padding: 0 20px;
+    padding-bottom: 300px;
+}
+
+.shop {
+    display: flex;
+}
+
+.shop_content {
+    width: 50%;
+}
+
+.shop_ttl {
+    display: flex;
+
+}
+
+.shop-back {
+    border: 1px solid #EEEEEE;
+    background-color: #fff;
+    text-decoration: none;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin: 10px;
+    box-shadow: 5px 5px 3px #a9a9a9;
+    border-radius: 5px;
+}
+
+.shop_name {
+    margin: 10px;
+}
+
+.shop_group_tg {
+    display: flex;
+}
+
+.reservation {
+    width: 45%;
+    height: 500px;
+    background-color: #3366ff;
+    color: #fff;
+    box-shadow: 5px 5px 3px #a9a9a9;
+    border-radius: 5px;
+}
+
+.reservation_tti {
+    margin-left: 30px;
+}
+
+.reservation_input-date {
+    width: 180px;
+    border: 1px solid #3366ff;
+    border-radius: 5px;
+    margin-left: 30px;
+    padding: 3px 10px;
+}
+
+.reservation_input {
+    margin-bottom: 10px;
+}
+
+.reservation_input-time {
+    width: 400px;
+    border: 1px solid #3366ff;
+    border-radius: 5px;
+    margin-left: 30px;
+    padding: 2px 10px;
+}
+
+.reservation_input-content {
+    width: 400px;
+    border: 1px solid #3366ff;
+    border-radius: 5px;
+    margin-left: 30px;
+    padding: 4px 10px;
+}
+
+.confirmation {
+    background-color: #6699ff;
+    width: 400px;
+    margin-left: 30px;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+td {
+    padding: 2px 30px 1px 20px;
+    font-size: 12px;
+}
+
+.reservation__btn__submit {
+    color: #fff;
+    background-color: blue;
+    margin-top: 155px;
+    border: 2px solid blue;
+    padding: 10px 206px;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 5px 5px 3px #a9a9a9;
+}

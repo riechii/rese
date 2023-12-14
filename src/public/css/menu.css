@@ -1,0 +1,47 @@
+.menu {
+    margin: 0 auto;
+    padding: 20px 15px;
+    max-width: 1230px;
+}
+
+.menu_close {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.menu_link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 35px;
+    font-weight: lighter;
+    background-color: #3366ff;
+
+    padding: 3px 8px;
+    border-radius: 7px;
+    box-shadow: 5px 5px 3px #a9a9a9;
+}
+
+.menu_content {
+    text-align: center;
+    margin-top: 30px;
+}
+
+li {
+    list-style: none;
+
+}
+
+.menu_content-link {
+    text-decoration: none;
+    color: #3366ff;
+    font-size: 35px;
+    cursor: pointer
+}
+
+.menu__button {
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: #3366ff;
+    font-size: 35px;
+    cursor: pointer
+}
