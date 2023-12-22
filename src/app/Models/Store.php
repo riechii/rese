@@ -11,9 +11,24 @@ class Store extends Model
 
     protected $fillable = [
         'shop',
-        'area',
-        'genre',
+        'area_id',
+        'genre_id',
         'image',
         'content'
     ];
+
+    public function reservations(){
+        return $this->hasMany('App\Models\Reservation');
+    }
+
+    public function favorites(){
+        return $this->hasMany('App\Models\Favorite');
+    }
+
+    public function area(){
+        return $this->belongsTo('App\Models\Area');
+    }
+    public function genre(){
+        return $this->belongsTo('App\Models\Genre');
+    }
 }

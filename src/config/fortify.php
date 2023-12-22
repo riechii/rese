@@ -157,4 +157,6 @@ return [
         ]),
     ],
 
+    'registeredUserController' => \App\Http\Controllers\CustomRegisteredUserController::class,
+
 ];

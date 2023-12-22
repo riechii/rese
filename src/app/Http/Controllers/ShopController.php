@@ -3,32 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Store;
+use App\Models\Area;
+use App\Models\Genre;
+use App\Models\Reservation;
+use App\Models\Favorite;
+use App\Http\Requests\UploadRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
+
+    //サンキューページ
+    public function thanks()
+    {
+        return view('thanks');
+    }
+
     //ショップの一覧表示
     public function index()
     {
-        return view('shop_list');
+        $stores = Store::all();
+        $user = auth()->user();
+        $areas = Area::all();
+        $genres = Genre::all();
+
+
+        return view('shop_list',compact('stores','user','areas','genres'));
     }
 
     //アップロード画面表示
     public function uploadForm()
     {
-        return view('upload');
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        return view('upload', compact('areas','genres'));
     }
 
     //アップロード
-    public function upload(Request $request)
+    public function upload(UploadRequest $request)
     {
-        // $store = $request->only(['shop', 'area', 'genre', 'content', 'image']);
-        // Store::create($store);
+
         $store = new Store();
-        $store->shop = $request->shop;
-        $store->area = $request->area;
-        $store->genre = $request->genre;
-        $store->content = $request->content;
+        $store->shop = $request->input('shop');
+        $store->area_id = $request->input('area');
+        $store->genre_id = $request->input('genre');
+        $store->content = $request->input('content');
 
         $uploadedFile = $request->file('image');
         $original = $uploadedFile->getClientOriginalName();
@@ -36,12 +58,119 @@ class ShopController extends Controller
         $fileName = $time . '_' . $original;
         $uploadedFile->storeAs('public/images', $fileName);
 
-        // $image = new Store();
+
         $store->image = 'storage/images/' . $fileName;
         $store->save();
 
-
-
-        return redirect('/upload_form')->with('message', 'アップロードされました');
+        return redirect('/upload/form')->with('message', 'アップロードされました');
     }
+    //エリア追加
+    public function uploadArea(Request $request)
+    {
+        $area = $request->only(['area']);
+        Area::create($area);
+
+        return redirect('/upload/form')->with('message', 'エリアを追加しました');
+    }
+    //ジャンル追加
+    public function uploadGenre(Request $request)
+    {
+        $genre= $request->only(['genre']);
+        Genre::create($genre);
+
+        return redirect('/upload/form')->with('message', 'ジャンルを追加しました');
+    }
+
+    //ログイン後のメニュー表示
+    public function afterMenu()
+    {
+        return view('after_menu');
+    }
+
+    //ログイン前のメニュー表示
+    public function beforeMenu()
+    {
+        return view('before_menu');
+    }
+
+    //エリア検索
+    public function searchArea(Request $request)
+    {
+        $area = $request->input('area');
+        $stores = Store::where('area_id', $area)->get();
+        $areas = Area::all();
+        $genres = Genre::all();
+        $shop = Store::all();
+
+        return view('shop_list', compact('stores','areas','genres','shop'));
+
+    }
+
+    //ジャンル検索
+    public function searchGenre(Request $request)
+    {
+        $genre = $request->input('genre');
+        $stores = Store::where('genre_id', $genre)->get();
+        $areas = Area::all();
+        $genres = Genre::all();
+        $shop = Store::all();
+
+        return view('shop_list', compact('stores','areas','genres','shop'));
+    }
+
+    //店名検索
+    public function searchShop(Request $request)
+    {
+        $shop = $request->input('shop');
+        $stores = Store::where('shop', 'LIKE', "%{$shop}%")->get();
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        return view('shop_list', compact('stores','areas','genres','shop'));
+    }
+
+    //飲食店詳細ページの表示
+    public function detail($shop_id)
+    {
+        $store = Store::find($shop_id);
+
+        return view('shop_detail', compact('shop_id','store'));
+    }
+
+    //お気に入り登録
+    public function favorite(Request $request)
+    {
+
+    }
+
+    //予約処理
+    public function reservation(Request $request)
+    {
+        $store_id = $request->input('store_id');
+        $store = Store::find($store_id);
+
+        if (Auth::check()){
+
+            $reservation = new Reservation();
+            $reservation->user_id = auth()->id();
+            $reservation->store_id = $request->input('store_id');
+            $reservation->date = $request->input('date');
+            $reservation->time = $request->input('time');
+            $reservation->number = $request->input('number');
+            $reservation->save();
+
+            return redirect('/done');
+        }else{
+            return redirect('/login');
+        }
+
+
+        // return view('shop_detail');
+    }
+
+    public function done()
+    {
+        return view('done');
+    }
+
 }

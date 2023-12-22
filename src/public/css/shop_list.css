@@ -30,9 +30,12 @@
     margin-top: 35px;
     box-shadow: 5px 5px 3px #a9a9a9;
     border-radius: 3px;
+    display: flex;
 }
 .search_form {
     justify-content: center;
+    margin-top: 5px;
+    padding-left: 5px;
 }
 
 .search_select {
@@ -58,12 +61,16 @@
     color: #cccccc;
 }
 
+
+
 .shop {
     width: 100%;
     height: 100%;
     background-color: #EEEEEE;
     padding: 0 20px;
     padding-bottom: 300px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .shop_content {
@@ -72,6 +79,8 @@
     box-shadow: 5px 5px 3px #a9a9a9;
     width: 250px;
     height: 270PX;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .shop_img {
@@ -80,7 +89,7 @@
 }
 
 .shop_name {
-    margin: 150px 0 0 10px;
+    margin: 5px 0 0 10px;
 
 }
 
@@ -99,6 +108,10 @@
     margin-left: 5px;
 }
 
+.shop_btn {
+    display: flex;
+}
+
 .shop_detail-btn_submit {
     background-color: #3366ff;
     color: #fff;
@@ -106,6 +119,7 @@
     border: 1px solid #3366ff;
     padding: 3px 10px;
     margin: 0 40px 10px 10px;
+    text-decoration: none;
 }
 
 .shop_favorite-btn_submit {

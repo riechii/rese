@@ -7,7 +7,7 @@
         <div class="thanks_content">
             <h2 class="thanks_ttl">ご予約ありがとうございます</h2>
             <div class="form__button">
-                <button class="form__button-submit" type="submit">戻る</button>
+                <a class="form__button-submit" href="/">戻る</a>
             </div>
         </div>
     </div>

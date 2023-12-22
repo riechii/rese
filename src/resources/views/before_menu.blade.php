@@ -14,9 +14,9 @@
                 <a class="menu_link" href="/">×</a>
             </div>
             <div class="menu_content">
-                <li><a class="menu_content-link" href="">Home</a></li>
-                <li><a class="menu_content-link" href="">Registartion</a></li>
-                <li><a class="menu_content-link" href="">Login</a></li>
+                <li><a class="menu_content-link" href="/">Home</a></li>
+                <li><a class="menu_content-link" href="/register">Registartion</a></li>
+                <li><a class="menu_content-link" href="/login">Login</a></li>
             </div>
         </div>
     </main>

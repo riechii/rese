@@ -14,12 +14,12 @@
                 <a class="menu_link" href="/">×</a>
             </div>
             <div class="menu_content">
-                <li><a class="menu_content-link" href="">Home</a></li>
+                <li><a class="menu_content-link" href="/">Home</a></li>
                 <li>
                 <form class="form" action="/logout" method="post">
                     @csrf
                     <button class="menu__button">Logout</button></li>
-                <li><a class="menu_content-link" href="">Mypage</a></li>
+                <li><a class="menu_content-link" href="/mypage">Mypage</a></li>
             </div>
         </div>
     </main>

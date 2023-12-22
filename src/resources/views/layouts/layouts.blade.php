@@ -11,12 +11,21 @@
 </head>
 <body>
     <header class="header">
+        @if(Auth::check())
         <div class="header_content">
-            <a href="">
+            <a href="/after_menu">
                 <img class="heder_icon" src="{{ asset('storage/icons/rese_icon.png') }}" alt="アイコン">
             </a>
             <h1 class="header_ttl">Rese</h1>
         </div>
+        @else
+        <div class="header_content">
+            <a href="/before_menu">
+                <img class="heder_icon" src="{{ asset('storage/icons/rese_icon.png') }}" alt="アイコン">
+            </a>
+            <h1 class="header_ttl">Rese</h1>
+        </div>
+        @endif
     </header>
     <main>
         @yield('content')
