@@ -7,7 +7,7 @@
         <div class="shop">
             <div class="shop_content">
                 <div class="shop_ttl">
-                    <a class="shop-back" href="/">&lt;</a>
+                    <a class="shop-back" href="{{ url()->previous() }}">&lt;</a>
                     <h3 class="shop_name">{{ $store->shop }}</h3>
                 </div>
                 <img class="shop_img" src="{{ asset($store->image) }}" alt="" style="max-width: 95%; ">
@@ -34,12 +34,18 @@
                         <input class="reservation_input-count" type="number" name="number" value="1" min="0">
                     </div>
                     <div class="confirmation">
+                        
                         <table class="confirmation_table">
                             <tr><td>Shop</td><td>{{ $store->shop }}</td></tr>
-                            <tr><td>Date</td><td>〇〇</td></tr>
-                            
-                            <tr><td>Time</td><td>〇〇</td></tr>
-                            <tr><td>Number</td><td>〇〇</td></tr>
+                            @if($store->reservations->count() > 0)
+                                <tr><td>Date</td><td>{{ $store->reservations->first()->date }}</td></tr>
+                                <tr><td>Time</td><td>{{ $store->reservations->first()->time }}</td></tr>
+                                <tr><td>Number</td><td>{{ $store->reservations->first()->number }}</td></tr>
+                            @else
+                                <tr><td>Date</td><td></td></tr>
+                                <tr><td>Time</td><td></td></tr>
+                                <tr><td>Number</td><td></td></tr>
+                            @endif
                         </table>
                     </div>
                     <button class="reservation__btn__submit" type="submit" value="">予約する</button>

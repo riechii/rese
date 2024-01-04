@@ -68,12 +68,16 @@
                 </div>
                 <div class="shop_btn">
                     <div>
-                    <a class="shop_detail-btn_submit" href="{{ route('detail',['shop_id' => $store->id]) }}">詳しく見る</a>
+                        <a class="shop_detail-btn_submit" href="{{ route('detail',['shop_id' => $store->id]) }}">詳しく見る</a>
                     </div>
-                    <form action="{{ route('favorite') }}">
+                    <form action="/favorite" method="post">
                         @csrf
-                        <input type="hidden" name="shop_id" value="{{ $store->id }}">
+                        <input type="hidden" name="store_id" value="{{ $store->id }}">
+                        @if($store->favorites->where('user_id', auth()->id())->isEmpty())
                         <button class="shop_favorite-btn_submit" type="submit" value=""><i class="fa-solid fa-heart" style="color: #dcdcdc; font-size: 25px;"></i></button>
+                        @else
+                        <button class="shop_favorite-btn_submit" type="submit" value=""><i class="fa-solid fa-heart" style="color: #ff0000; font-size: 25px;"></i></button>
+                        @endif
                     </form>
                 </div>
             </div>

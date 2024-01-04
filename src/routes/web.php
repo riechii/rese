@@ -16,9 +16,10 @@ use App\Http\Controllers\CustomRegisteredUserController;
 */
 
 Route::middleware('auth')->group(function () {
-        // Route::get('/thanks', [ShopController::class, 'thanks']);
+        Route::get('/mypage', [ShopController::class, 'mypage'])->name('mypage');
+        Route::post('/mypage/delete', [ShopController::class, 'delete'])->name('delete');
 });
-Route::get('/', [ShopController::class, 'index']);
+Route::get('/', [ShopController::class, 'index'])->name('shopList');
 Route::get('/upload/form', [ShopController::class, 'uploadForm']);
 Route::post('/upload', [ShopController::class, 'upload'])->name('upload');
 Route::post('/upload/area', [ShopController::class, 'uploadArea']);
