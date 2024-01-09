@@ -25,6 +25,10 @@ class Store extends Model
         return $this->hasMany('App\Models\Favorite');
     }
 
+    public function reviews(){
+        return $this->hasMany('App\Models\Review');
+    }
+
     public function area(){
         return $this->belongsTo('App\Models\Area');
     }

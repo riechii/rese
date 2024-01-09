@@ -118,13 +118,22 @@
     border-radius: 3px;
     border: 1px solid #3366ff;
     padding: 3px 10px;
-    margin: 0 40px 10px 10px;
+    margin: 0 10px 10px 10px;
+    text-decoration: none;
+}
+
+.shop_detail-btn_reviews {
+    background-color: #3366ff;
+    color: #fff;
+    border-radius: 3px;
+    border: 1px solid #3366ff;
+    padding: 3px 10px;
     text-decoration: none;
 }
 
 .shop_favorite-btn_submit {
     border: 1px solid #fff;
     background-color: #fff;
-    margin-left: 50px;
+    margin-left: 10px;
 }
 

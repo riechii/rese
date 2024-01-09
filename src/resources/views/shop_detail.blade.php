@@ -31,16 +31,21 @@
                         <input class="reservation_input-time" type="time" name="time" value="" />
                     </div>
                     <div class="reservation_input">
-                        <input class="reservation_input-count" type="number" name="number" value="1" min="0">
+                        <input class="reservation_input-count" type="number" name="number" value="1" min="1">
+                    </div>
+                    <div class="reservation_error">
+                        @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
                     </div>
                     <div class="confirmation">
                         
                         <table class="confirmation_table">
                             <tr><td>Shop</td><td>{{ $store->shop }}</td></tr>
-                            @if($store->reservations->count() > 0)
-                                <tr><td>Date</td><td>{{ $store->reservations->first()->date }}</td></tr>
-                                <tr><td>Time</td><td>{{ $store->reservations->first()->time }}</td></tr>
-                                <tr><td>Number</td><td>{{ $store->reservations->first()->number }}</td></tr>
+                            @if(auth()->check())
+                                <tr><td>Date</td><td>{{ $reservation ? $reservation->date : '' }}</td></tr>
+                                <tr><td>Time</td><td>{{ $reservation ? $reservation->time : '' }}</td></tr>
+                                <tr><td>Number</td><td>{{ $reservation ? $reservation->number : '' }}</td></tr>
                             @else
                                 <tr><td>Date</td><td></td></tr>
                                 <tr><td>Time</td><td></td></tr>

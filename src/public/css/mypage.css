@@ -20,24 +20,40 @@
     margin: 0 50px;
 }
 
+.reservation-ttl {
+    width: 200px;
+}
+
 .reservation-content {
     background-color: #3366ff;
     color: #fff;
     width: 320px;
-    height: 220px;
+    height: 420px;
     border-radius: 5px;
-    font-size: 13px;
+    font-size: 14px;
     box-shadow: 5px 5px 3px #dcdcdc;
     margin-bottom: 5px;
 }
 
 .reservation-content-ttl {
     margin-top: 30px;
+    margin-left: 30px;
+}
+
+.reservation-message {
+    color: red;
+    font-size: 30px;
+}
+
+.reservation_error {
+    color: #ff0000;
+    list-style: none;
+    margin-left: 30px;
+    font-size: 20px;
 }
 
 .reservation-btn {
     display: flex;
-    margin-left: 30px;
 }
 
 .reservation-btn_submit {
@@ -70,7 +86,7 @@ td {
 
 .shop_wrapper {
     display: flex;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .shop_content {
@@ -126,4 +142,38 @@ td {
     border: 1px solid #fff;
     background-color: #fff;
     margin-left: 50px;
+}
+
+.reservation_change {
+    margin-left: 10px;
+}
+
+.reservation_change_form-group {
+    margin-left: 30px;
+    margin-bottom: 5px;
+}
+
+.reservation_change_btn {
+    text-align: center;
+}
+
+.reservation_change_submit {
+
+    background-color: blue;
+    color: #fff;
+    padding: 10px;
+    border: solid 1px blue;
+    border-radius: 3px;
+}
+
+.reservation_change-input-date {
+    width: 150px;
+}
+
+.reservation_change-input-time {
+    width: 150px;
+}
+
+.reservation_change-input-number {
+    width: 150px;
 }

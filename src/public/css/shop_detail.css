@@ -64,6 +64,12 @@
     margin-bottom: 10px;
 }
 
+.reservation_error {
+    color: #ff0000;
+    list-style: none;
+    margin-left: 30px;
+}
+
 .reservation_input-time {
     width: 37vw;
     border: 1px solid #3366ff;

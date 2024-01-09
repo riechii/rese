@@ -18,6 +18,8 @@ use App\Http\Controllers\CustomRegisteredUserController;
 Route::middleware('auth')->group(function () {
         Route::get('/mypage', [ShopController::class, 'mypage'])->name('mypage');
         Route::post('/mypage/delete', [ShopController::class, 'delete'])->name('delete');
+        Route::post('/mypage/update', [ShopController::class, 'update'])->name('update');
+
 });
 Route::get('/', [ShopController::class, 'index'])->name('shopList');
 Route::get('/upload/form', [ShopController::class, 'uploadForm']);
@@ -34,6 +36,12 @@ Route::post('/favorite', [ShopController::class, 'favorite'])->name('favorite');
 Route::post('/detail/crate', [ShopController::class, 'reservation'])->name('reservation');
 Route::get('/done', [ShopController::class, 'done'])->name('done');
 Route::get('/thanks', [ShopController::class, 'thanks'])->name('thanks');
+
+
+Route::get('/review/form/{store_id}', [ShopController::class, 'showReviewForm'])->name('showReviewForm');
+Route::post('/review/form', [ShopController::class, 'reviewForm']);
+Route::get('/review/{store_id}', [ShopController::class, 'review'])->name('review');
+
 
 Route::get('/register', [CustomRegisteredUserController::class, 'create'])->middleware(['guest'])->name('register');
 
