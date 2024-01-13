@@ -9,10 +9,7 @@ use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Reservation;
 use App\Models\Favorite;
-use App\Models\Review;
-use Spatie\Permission\Models\Role;
 use App\Http\Requests\UploadRequest;
-use App\Http\Requests\ReservationRequest;
 use App\Http\Requests\AreaRequest;
 use App\Http\Requests\GenreRequest;
 use App\Http\Requests\UploadEditRequest;
@@ -109,16 +106,6 @@ class ShopController extends Controller
 
     }
 
-    //予約の確認
-    public function showReservation($id)
-    {
-        $store = Store::find($id);
-        $user = auth()->user();
-        $reservations = Reservation::where('store_id', $id)->get();
-
-        return view('reservation_list', compact('store','user', 'reservations'));
-    }
-
     //エリア追加
     public function uploadArea(AreaRequest $request)
     {
@@ -134,42 +121,6 @@ class ShopController extends Controller
         Genre::create($genre);
 
         return redirect('/upload/form')->with('message', 'ジャンルを追加しました');
-    }
-
-    //ユーザー一覧
-    public function userList()
-    {
-        $users = User::all();
-
-        return view('user_list',compact('users'));
-    }
-
-    //権限変更フォーム表示
-    public function showUserEdit($id)
-    {
-        $user = User::find($id);
-        $roles = Role::all();
-
-        return view('user_edit',compact('user','roles'));
-    }
-
-    //権限変更
-    public function userEdit(Request $request,$id)
-    {
-        $user = User::find($id);
-        $user->syncRoles([$request->input('roles')]);
-
-        return redirect()->route('userList')->with('message', '権限を更新しました。');
-    }
-
-    //権限剥奪
-    public function revokeRoles (Request $request,$id)
-    {
-        $user = User::find($id);
-        
-        $user->syncRoles([]); 
-
-        return redirect()->route('userList')->with('message', '権限を剥奪しました。');
     }
 
     //ログイン後のメニュー表示
@@ -230,79 +181,6 @@ class ShopController extends Controller
         return view('shop_detail', compact('shop_id','store','reservation'));
     }
 
-    //お気に入り登録
-    public function favorite(Request $request)
-    {
-        if (!auth()->check()) {
-        return redirect('/login');
-    }
-
-        $store_id = $request->input('store_id');
-        $user_id = auth()->id();
-
-        $favorited = Favorite::where('user_id', $user_id)->where('store_id', $store_id)->first();
-
-        if($favorited){
-            $favorited->delete();
-            $redirectPath = url()->previous() === route('mypage') ? '/mypage' : '/';
-        }else{
-            $favorite = new Favorite();
-            $favorite->user_id = $user_id;
-            $favorite->store_id = $store_id;
-            $favorite->save();
-            $redirectPath = '/';
-        }
-
-        return redirect($redirectPath);
-
-    }
-
-    //予約処理
-    public function reservation(ReservationRequest $request)
-    {
-        $store_id = $request->input('store_id');
-        $store = Store::find($store_id);
-
-        if (Auth::check()){
-
-            $reservation = new Reservation();
-            $reservation->user_id = auth()->id();
-            $reservation->store_id = $request->input('store_id');
-            $reservation->date = $request->input('date');
-            $reservation->time = $request->input('time');
-            $reservation->number = $request->input('number');
-            $reservation->save();
-
-            return redirect()->route('done', compact('store', 'reservation'));
-        }else{
-            return redirect('/login');
-        }
-    }
-
-    //予約の変更
-    public function update(ReservationRequest $request)
-    {
-        $reservation_id = $request->input('id');
-        // dd($reservation_id);
-
-        $reservation = Reservation::find($reservation_id);
-
-        $reservation->update([
-            'date'=> $request->date,
-            'time'=> $request->time,
-            'number'=> $request->number,
-        ]);
-
-
-        return redirect('/mypage')->with('message', '予約を変更しました');
-    }
-
-    //予約ありがとうページ
-    public function done()
-    {
-        return view('done');
-    }
-
     //マイページ
     public function mypage()
     {
@@ -310,67 +188,7 @@ class ShopController extends Controller
 
         $favorites = $user->favorites;
         $reservations = $user->reservations;
-        // $favorites = Favorite::all();
-        // $store = Store::all();
-        // $user = User::all();
-        // $reservations = reservation::all();
 
         return view('mypage', compact('reservations','user','favorites'));
-    }
-
-    //予約削除
-    public function delete(Request $request)
-    {
-        $reservationId = $request->input('id');
-        reservation::find($reservationId)->delete();
-
-        return redirect('/mypage');
-    }
-
-    //口コミ一覧表示
-    public function review($store_id)
-    {
-        $store = Store::find($store_id);
-        
-        $reviews = Review::where('store_id', $store_id)->paginate(10);
-        $hasReservation = $store->reservations()->where('user_id', auth()->id())->exists();
-        $reservation = $hasReservation ? $store->reservations()->where('user_id', auth()->id())->first() : null;
-
-
-        return view('review', compact('store', 'reviews', 'hasReservation', 'reservation'));
-    }
-
-    //口コミ投稿欄表示
-    public function showReviewForm($store_id)
-    {
-        $store = Store::find($store_id);
-        
-        $hasReservation = $store->reservations()->where('user_id', auth()->id())->exists();
-        
-
-        $reservation = $hasReservation ? $store->reservations()->where('user_id', auth()->id())->first() : null;
-
-        return view('review_form', compact('store', 'reservation'));
-    }
-
-    //口コミ投稿
-    public function reviewForm(Request $request)
-    {
-        $store_id = $request->input('store_id');
-        // $reservation_id = $request->input('reservation_id');
-        // $store = Store::find($store_id);
-
-        // $hasReservation = $store->reservations()->where('user_id', auth()->id())->exists();
-
-        // $reservation = $hasReservation ? $store->reservations()->where('user_id', auth()->id())->first() : null;
-
-        $review = new Review();
-        $review->user_id = auth()->id();
-        $review->store_id = $store_id;
-        $review->evaluation = $request->input('evaluation');
-        $review->comment = $request->input('comment');
-        $review->save();
-
-        return redirect()->route('review', ['store_id' => $store_id])->with('message', '口コミを投稿しました。');
     }
 }
