@@ -26,6 +26,17 @@
                 <h1 class="header_ttl">Rese</h1>
             </div>
             @endif
+            @can('creation')
+            <div>
+                <a class="admin" href="{{ route('userList') }}">ユーザーリスト</a>
+            </div>
+            @endcan
+            @can('register')
+            <div>
+                <a class="admin" href="{{route('uploadForm') }}">アップロード</a>
+            </div>
+            @endcan
+            
             <div class="search">
                 <form class="search_form" action="{{ route('searchArea') }}" method="get">
                     @csrf

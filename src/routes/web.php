@@ -22,10 +22,23 @@ Route::middleware('auth')->group(function () {
 
 });
 Route::get('/', [ShopController::class, 'index'])->name('shopList');
-Route::get('/upload/form', [ShopController::class, 'uploadForm']);
+Route::get('/upload/form', [ShopController::class, 'uploadForm'])->name('uploadForm');
 Route::post('/upload', [ShopController::class, 'upload'])->name('upload');
+
+Route::get('/upload/edit/{id}', [ShopController::class, 'showUploadEdit'])->name('showUploadEdit');
+Route::post('/upload/edit/{id}', [ShopController::class, 'uploadEdit'])->name('uploadEdit');
+Route::get('/upload/reservation/{id}', [ShopController::class, 'showReservation'])->name('showReservation');
+
+
 Route::post('/upload/area', [ShopController::class, 'uploadArea']);
 Route::post('/upload/genre', [ShopController::class, 'uploadGenre']);
+
+Route::get('/user', [ShopController::class, 'userList'])->name('userList');
+Route::get('/user/edit/{id}', [ShopController::class, 'showUserEdit'])->name('showUserEdit');
+Route::post('/user/edit/{id}', [ShopController::class, 'userEdit'])->name('userEdit');
+Route::post('/user/revoke/{id}', [ShopController::class, 'revokeRoles'])->name('revokeRoles');
+
+
 Route::get('/after_menu', [ShopController::class, 'afterMenu'])->name('afterMenu');
 Route::get('/before_menu', [ShopController::class, 'beforeMenu'])->name('beforeMenu');
 Route::get('/search', [ShopController::class, 'searchArea'])->name('searchArea');
@@ -36,8 +49,6 @@ Route::post('/favorite', [ShopController::class, 'favorite'])->name('favorite');
 Route::post('/detail/crate', [ShopController::class, 'reservation'])->name('reservation');
 Route::get('/done', [ShopController::class, 'done'])->name('done');
 Route::get('/thanks', [ShopController::class, 'thanks'])->name('thanks');
-
-
 Route::get('/review/form/{store_id}', [ShopController::class, 'showReviewForm'])->name('showReviewForm');
 Route::post('/review/form', [ShopController::class, 'reviewForm']);
 Route::get('/review/{store_id}', [ShopController::class, 'review'])->name('review');

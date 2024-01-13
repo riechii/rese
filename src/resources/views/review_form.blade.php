@@ -12,8 +12,7 @@
             @csrf
                 <div class="review_form-radio">
                     <input type="hidden" name="store_id" value="{{ $store->id }}">
-                    <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
-                    
+
                     <label class="review_form-star"><input class="review_form-star" type="radio" name="evaluation" value="5" checked><i class="fas fa-star" style="color: #ffd700; font-size: 25px;"></i><i class="fas fa-star" style="color: #ffd700; font-size: 25px;"></i><i class="fas fa-star" style="color: #ffd700; font-size: 25px;"></i><i class="fas fa-star" style="color: #ffd700; font-size: 25px;"></i><i class="fas fa-star" style="color: #ffd700; font-size: 25px;"></i></label>
 
                     <label class="review_form-star"><input class="review_form-star" type="radio" name="evaluation" value="4"><i class="fas fa-star" style="color: #ffd700; font-size: 25px;"></i><i class="fas fa-star" style="color: #ffd700; font-size: 25px;"></i><i class="fas fa-star" style="color: #ffd700; font-size: 25px;"></i><i class="fas fa-star" style="color: #ffd700; font-size: 25px;"></i></label>

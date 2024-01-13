@@ -10,8 +10,12 @@ use App\Models\Genre;
 use App\Models\Reservation;
 use App\Models\Favorite;
 use App\Models\Review;
+use Spatie\Permission\Models\Role;
 use App\Http\Requests\UploadRequest;
 use App\Http\Requests\ReservationRequest;
+use App\Http\Requests\AreaRequest;
+use App\Http\Requests\GenreRequest;
+use App\Http\Requests\UploadEditRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
 
@@ -41,8 +45,9 @@ class ShopController extends Controller
     {
         $areas = Area::all();
         $genres = Genre::all();
+        $stores = Store::paginate(10);
 
-        return view('upload', compact('areas','genres'));
+        return view('upload', compact('areas','genres','stores'));
     }
 
     //アップロード
@@ -67,8 +72,55 @@ class ShopController extends Controller
 
         return redirect('/upload/form')->with('message', 'アップロードされました');
     }
+
+    //店舗編集フォームの表示
+    public function showUploadEdit(Request $request, $id)
+    {
+
+        $store = Store::find($id);
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        return view('upload_edit', compact('store','areas','genres'));
+    }
+
+    //店舗編集
+    public function uploadEdit(UploadEditRequest $request, $id)
+    {
+        $store = Store::find($id);
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        $store->update([
+            'shop'=> $request->shop,
+            'area_id'=> $request->area,
+            'genre_id'=> $request->genre,
+            'content'=> $request->content,
+        ]);
+        
+        if ($request->hasFile('image')){
+            $original = $request->file('image')->getClientOriginalName();
+            $time = now()->format('Ymd_Hi');
+            $fileName = $time . '_' . $original;
+            $request->file('image')->storeAs('public/images', $fileName);
+            $store->update(['image' => 'storage/images/' . $fileName]);
+        }
+        return redirect()->route('uploadForm', ['id' => $id])->with('message', '店舗情報を変更しました。');
+
+    }
+
+    //予約の確認
+    public function showReservation($id)
+    {
+        $store = Store::find($id);
+        $user = auth()->user();
+        $reservations = Reservation::where('store_id', $id)->get();
+
+        return view('reservation_list', compact('store','user', 'reservations'));
+    }
+
     //エリア追加
-    public function uploadArea(Request $request)
+    public function uploadArea(AreaRequest $request)
     {
         $area = $request->only(['area']);
         Area::create($area);
@@ -76,12 +128,48 @@ class ShopController extends Controller
         return redirect('/upload/form')->with('message', 'エリアを追加しました');
     }
     //ジャンル追加
-    public function uploadGenre(Request $request)
+    public function uploadGenre(GenreRequest $request)
     {
         $genre= $request->only(['genre']);
         Genre::create($genre);
 
         return redirect('/upload/form')->with('message', 'ジャンルを追加しました');
+    }
+
+    //ユーザー一覧
+    public function userList()
+    {
+        $users = User::all();
+
+        return view('user_list',compact('users'));
+    }
+
+    //権限変更フォーム表示
+    public function showUserEdit($id)
+    {
+        $user = User::find($id);
+        $roles = Role::all();
+
+        return view('user_edit',compact('user','roles'));
+    }
+
+    //権限変更
+    public function userEdit(Request $request,$id)
+    {
+        $user = User::find($id);
+        $user->syncRoles([$request->input('roles')]);
+
+        return redirect()->route('userList')->with('message', '権限を更新しました。');
+    }
+
+    //権限剥奪
+    public function revokeRoles (Request $request,$id)
+    {
+        $user = User::find($id);
+        
+        $user->syncRoles([]); 
+
+        return redirect()->route('userList')->with('message', '権限を剥奪しました。');
     }
 
     //ログイン後のメニュー表示
@@ -270,18 +358,15 @@ class ShopController extends Controller
     {
         $store_id = $request->input('store_id');
         // $reservation_id = $request->input('reservation_id');
-        $store = Store::find($store_id);
+        // $store = Store::find($store_id);
 
-        $hasReservation = $store->reservations()->where('user_id', auth()->id())->exists();
+        // $hasReservation = $store->reservations()->where('user_id', auth()->id())->exists();
 
-        $reservation = $hasReservation ? $store->reservations()->where('user_id', auth()->id())->first() : null;
+        // $reservation = $hasReservation ? $store->reservations()->where('user_id', auth()->id())->first() : null;
 
         $review = new Review();
         $review->user_id = auth()->id();
         $review->store_id = $store_id;
-        if ($reservation) {
-            $review->reservation_id = $reservation->id;
-        }
         $review->evaluation = $request->input('evaluation');
         $review->comment = $request->input('comment');
         $review->save();

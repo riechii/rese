@@ -1,0 +1,88 @@
+.edit {
+    width: 100%;
+    height: 100%;
+    background-color: #EEEEEE;
+    padding: 0 20px;
+    padding-bottom: 200px;
+}
+
+.edit_ttl {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.upload__alert--danger {
+    color: red;
+    margin-left: 50px;
+    list-style: none;
+}
+
+.upload__alert--danger ul {
+    list-style: none;
+}
+
+.edit_form-back {
+    border: 1px solid #EEEEEE;
+    background-color: #fff;
+    text-decoration: none;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin: 10px;
+    margin-left: 40px;
+    box-shadow: 5px 5px 3px #a9a9a9;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+
+.edit_table {
+    margin: 0 auto;
+    text-align: left;
+
+}
+
+.edit_table_row {
+
+}
+
+.edit_form {
+
+}
+
+.edit_wrap {
+
+}
+
+.edit_input {
+    width: 20vw;
+    height: 30px;
+    margin: 5px 10px;
+    border-radius: 3px;
+    border-color: #a9a9a9;
+}
+
+.edit_img {
+    margin: 5px 10px;
+}
+
+.edit_text {
+    width: 30vw;
+    margin: 5px 10px;
+    border-radius: 3px;
+    border-color: #a9a9a9;
+}
+
+.edit_form__button {
+    text-align: center;
+}
+
+.edit_form__button-submit {
+    color: #fff;
+    background-color: #3366ff;
+    border: solid 1px #3366ff;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}

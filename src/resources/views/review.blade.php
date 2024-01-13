@@ -17,6 +17,7 @@
             {{ session('message') }}
             @endif
         </div>
+        @if($reviews->count() > 0)
         @foreach($reviews as $review)
         <div class="review_list">
             <table class="review_table">
@@ -29,6 +30,9 @@
             </table>
         </div>
         @endforeach
+        @else
+        <p class="not_review">口コミはありません</p>
+        @endif
         {{$reviews->links()}}
     </div>
 @endsection

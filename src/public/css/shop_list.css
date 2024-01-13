@@ -22,6 +22,18 @@
     justify-content: space-between;
 }
 
+.admin {
+    text-decoration: none;
+    background-color: #3366ff;
+    color: #fff;
+    border-radius: 3px;
+    border: 1px solid #3366ff;
+    padding: 3px 10px;
+    margin-top: 40px;
+    display: inline-block;
+
+}
+
 .search {
     text-align: right;
     justify-content: center;
@@ -46,8 +58,8 @@
 }
 
 .search_text {
-    width: 200px;
-    padding: 10px;
+    width: 20vw;
+    padding-top: 10px;
     border: none;
 }
 
