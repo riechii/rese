@@ -15,4 +15,9 @@ RUN apt-get update \
   && docker-php-ext-install gd \
   && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update \
+  && apt-get install -y libmagickwand-dev --no-install-recommends \
+  && pecl install imagick \
+  && docker-php-ext-enable imagick
+
 WORKDIR /var/www

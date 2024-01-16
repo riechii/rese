@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthorityController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\CustomRegisteredUserController;
 
 /*
@@ -51,11 +52,16 @@ Route::get('/search/shop', [ShopController::class, 'searchShop'])->name('searchS
 Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('detail');
 Route::post('/favorite', [FavoriteController::class, 'favorite'])->name('favorite');
 Route::post('/detail/crate', [ReservationController::class, 'reservation'])->name('reservation');
+Route::get('/reservation/qrcode/{reservation_id}', [ReservationController::class, 'generateQrCode'])->name('generateQrCode');
+
 Route::get('/done', [ReservationController::class, 'done'])->name('done');
 Route::get('/thanks', [ShopController::class, 'thanks'])->name('thanks');
 Route::get('/review/form/{store_id}', [ReviewController::class, 'showReviewForm'])->name('showReviewForm');
 Route::post('/review/form', [ReviewController::class, 'reviewForm']);
 Route::get('/review/{store_id}', [ReviewController::class, 'review'])->name('review');
+
+Route::get('/charge/form', [StripeController::class, 'showCharge'])->name('showCharge');
+Route::post('/charge', [StripeController::class, 'charge'])->name('charge');
 
 
 Route::get('/register', [CustomRegisteredUserController::class, 'create'])->middleware(['guest'])->name('register');

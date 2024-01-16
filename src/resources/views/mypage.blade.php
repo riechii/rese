@@ -4,6 +4,7 @@
 @endsection
 @section('content')
     <div class="mypage">
+        <a class="mypage_charge" href="{{ route('showCharge') }}">お支払い</a>
         <h2 class="mypage_name">{{ Auth::user()->name }} さん</h2>
         <div class="container">
             <div class="reservation">
@@ -22,8 +23,8 @@
                 <div class="reservation-content">
                     
                     <div class="reservation-btn">
-                        
                         <p class="reservation-content-ttl"><i class="fa-solid fa-clock" style="font-size: 20px;"></i>　予約{{ $index + 1 }}</p>
+                        <a class="reservation_qr" href="{{ route('generateQrCode', ['reservation_id' => $reservation->id]) }}">QRコード</a>
                         <form action="/mypage/delete" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $reservation->id }}">

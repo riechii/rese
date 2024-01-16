@@ -8,6 +8,8 @@ use App\Models\Store;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ReservationRequest;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Intervention\Image\Facades\Image;
 
 class ReservationController extends Controller
 {
@@ -74,5 +76,15 @@ class ReservationController extends Controller
     public function done()
     {
         return view('done');
+    }
+
+    public function generateQrCode($reservation_id)
+    {
+        $reservation = Reservation::find($reservation_id);
+        
+        $url = url("/reservation/qrcode/{$reservation_id}");
+
+
+        return response(QrCode::format('png')->size(300)->generate($url))->header('Content-Type', 'image/png');
     }
 }
