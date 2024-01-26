@@ -77,7 +77,6 @@
                         @endforeach
                         </select></td>
                 </tr>
-
                 <tr>
                     <th><label for="genre">ジャンル:</label></th>
                     <td><select class="upload_input" name="genre">
@@ -87,24 +86,26 @@
                                 @endforeach
                         </select></td>
                 </tr>
-
                 <tr>
                     <th><label for="image">画像:</label></th>
                         <td><input class="upload_img" type="file" name="image" required></td>
                 </tr>
-
                 <tr>
                     <th><label for="content">詳細:</label></th>
                         <td><textarea class="upload_text" name="content" rows="4" required placeholder="店舗の紹介文等" >{{ old('content') }}</textarea></td>
                 </tr>
-
             </table>
             <div class="upload_form__button">
                 <button class="upload_form__button_submit" type="submit">アップロード</button>
             </div>
         </form>
     </div>
-    
+    <div class="mail">
+        <div class="mail_ttl">
+            <h2>お知らせメールを送る</h2>
+        </div>
+        <a class="mail_link" href="/notification">メールの送信</a>
+    </div>
     <div class="store_edit">
         <div class="store_edit_ttl">
             <h2>予約情報の確認・店舗情報を編集</h2>

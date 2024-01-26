@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
+use Carbon\Carbon;
 
 class MasterDatabaseSeeder extends Seeder
 {
@@ -16,34 +17,41 @@ class MasterDatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $now = Carbon::now();
+
         $admin = User::create([
             'name' => '管理者',
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => $now,
         ]);
 
         $manager = User::create([
             'name' => '店舗代表者',
             'email' => 'manager@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => $now,
         ]);
 
         User::create([
             'name' => 'ユーザー１',
             'email' => 'tt@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => $now,
         ]);
 
         User::create([
             'name' => 'ユーザー２',
             'email' => 'ss@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => $now,
         ]);
 
         User::create([
             'name' => 'ユーザー3',
             'email' => 'ee@example.com',
             'password' => bcrypt('password'),
+            'email_verified_at' => $now,
         ]);
 
         //ロール作成

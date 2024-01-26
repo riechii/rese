@@ -7,7 +7,9 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\CustomRegisteredUserController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +22,50 @@ use App\Http\Controllers\CustomRegisteredUserController;
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
+    Route::get('/email/verify', function () {
+        return view('auth.verify-email');
+    })->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+        return redirect('/');
+    })->middleware(['signed'])->name('verification.verify');
+
+    Route::post('/email/verification-notification', function () {
+    if (Auth::user()) {
+        Auth::user()->sendEmailVerificationNotification();
+        return back()->with('status', 'verification-link-sent');
+    } else {
+
+        return redirect('/');
+    }
+})->middleware(['throttle:6,1'])->name('verification.send');
+
+    Route::get('/mypage-verification', function () {
+        return view('auth.mypage-verification');
+        })->name('mypage-verification');
+
+    Route::get('/mypage', function () {
+        $user = Auth::user();
+
+        if ($user && $user->hasVerifiedEmail()) {
+            return view('mypage');
+        }
+
+        return redirect()->route('mypage-verification');
+    })->name('mypage');
+});
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
         Route::get('/mypage', [ShopController::class, 'mypage'])->name('mypage');
         Route::post('/mypage/delete', [ReservationController::class, 'delete'])->name('delete');
         Route::post('/mypage/update', [ReservationController::class, 'update'])->name('update');
 
 });
+
 Route::get('/', [ShopController::class, 'index'])->name('shopList');
 Route::get('/upload/form', [ShopController::class, 'uploadForm'])->name('uploadForm');
 Route::post('/upload', [ShopController::class, 'upload'])->name('upload');
@@ -62,6 +102,10 @@ Route::get('/review/{store_id}', [ReviewController::class, 'review'])->name('rev
 
 Route::get('/charge/form', [StripeController::class, 'showCharge'])->name('showCharge');
 Route::post('/charge', [StripeController::class, 'charge'])->name('charge');
+
+
+Route::get('/notification', [NotificationController::class, 'showNotificationEmail']);
+Route::post('/notification', [NotificationController::class, 'sendNotificationEmail']);
 
 
 Route::get('/register', [CustomRegisteredUserController::class, 'create'])->middleware(['guest'])->name('register');

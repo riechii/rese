@@ -27,7 +27,6 @@
     border: none;
     border-bottom: 1px solid #999;
     width: 300px;
-
 }
 
 .login-input-container {
@@ -47,4 +46,22 @@
     border: 1px solid #3366ff;
     border-radius: 3px;
     padding: 3px 10px;
+}
+
+@media screen and (max-width: 767px) {
+
+.login_content {
+    width: 90%;
+    height: 190px;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 0 0 3px 3px;
+    box-shadow: 5px 5px 3px #a9a9a9;
+}
+
+.login-input {
+    border: none;
+    border-bottom: 1px solid #999;
+    width: 80%;
+}
 }

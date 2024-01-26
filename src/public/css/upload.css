@@ -41,10 +41,6 @@
     text-align: center;
 }
 
-.area_text {
-
-}
-
 .area-form__item {
     width: 70%;
 }
@@ -162,6 +158,23 @@
     margin-top: 10px;
 }
 
+.mail {
+    text-align: center;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+
+.mail_link {
+    color: #fff;
+    background-color: #3366ff;
+    border: solid 1px #3366ff;
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
 .store_edit_ttl {
     text-align: center;
     margin-top: 40px;
@@ -188,4 +201,15 @@
 
 .pagination li {
     display: inline-block;
+}
+
+@media screen and (max-width: 767px) {
+
+.upload_input {
+    width: 80%;
+}
+
+.upload_text {
+    width: 80%;
+}
 }

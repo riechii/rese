@@ -1,0 +1,65 @@
+.notification {
+    width: 100%;
+    height: 100%;
+    background-color: #EEEEEE;
+    padding: 0 20px;
+    padding-bottom: 300px;
+}
+
+.notification_back {
+    border: 1px solid #EEEEEE;
+    background-color: #fff;
+    text-decoration: none;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin: 10px;
+    margin-left: 40px;
+    box-shadow: 5px 5px 3px #a9a9a9;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.notification_ttl {
+    text-align: center;
+}
+
+.notification_content {
+    display: inline-block;
+    text-align: left;
+}
+
+.notification_form {
+    text-align: center;
+}
+
+.notification_input {
+    margin: 10px;
+}
+
+.notification_text{
+    width: 40vw;
+    height: 30vh;
+}
+
+.notification_btn {
+    text-align: center;
+    justify-content: center;
+}
+
+.notification_btn_submit {
+    color: #fff;
+    background-color: #3366ff;
+    border: solid 1px #3366ff;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+
+.notification_text{
+    width: 80%;
+    height: 30vh;
+}
+}

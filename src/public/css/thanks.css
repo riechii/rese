@@ -14,7 +14,6 @@
     text-align: center;
     box-shadow: 5px 5px 3px #a9a9a9;
     border-radius: 5px;
-    
 }
 
 .thanks_ttl {
@@ -39,5 +38,21 @@
     font-size: 13px;
 }
 
+@media screen and (max-width: 767px) {
 
+.thanks_content {
+    background-color: white;
+    margin: 0 auto;
+    width: 95%;
+    height: 300px;
+    text-align: center;
+    box-shadow: 5px 5px 3px #a9a9a9;
+    border-radius: 5px;
+}
+
+.thanks_ttl {
+    font-size: 20px;
+    padding-top: 80px;
+}
+}
 

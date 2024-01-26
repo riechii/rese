@@ -42,17 +42,6 @@
 
 }
 
-.edit_table_row {
-
-}
-
-.edit_form {
-
-}
-
-.edit_wrap {
-
-}
 
 .edit_input {
     width: 20vw;
@@ -85,4 +74,15 @@
     padding: 5px 10px;
     cursor: pointer;
     margin-top: 10px;
+}
+
+@media screen and (max-width: 767px) {
+
+.edit_input {
+    width: 80%;
+}
+
+.edit_text {
+    width: 80%;
+}
 }

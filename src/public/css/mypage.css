@@ -6,16 +6,6 @@
     padding-bottom: 300px;
 }
 
-.mypage_charge {
-    text-decoration: none;
-    background-color: #3366ff;
-    color: #fff;
-    padding: 10px;
-    border: solid 1px #3366ff;
-    border-radius: 3px;
-    margin-left: 10%;
-}
-
 .mypage_name {
     text-align: center;
     margin-top: 0;
@@ -197,4 +187,21 @@ td {
 
 .reservation_change-input-number {
     width: 150px;
+}
+
+@media screen and (max-width: 767px){
+
+.container {
+    display: block;
+}
+
+.reservation {
+    margin-left: 0;
+}
+
+.reservation-ttl {
+    padding-left: 20px;
+    display: block;
+
+}
 }

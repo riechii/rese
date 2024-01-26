@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GenresTableSeeder::class);
         $this->call(StoresTableSeeder::class);
         $this->call(MasterDatabaseSeeder::class);
+        \App\Models\Review::factory(30)->create();
     }
 }

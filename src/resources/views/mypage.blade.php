@@ -4,7 +4,6 @@
 @endsection
 @section('content')
     <div class="mypage">
-        <a class="mypage_charge" href="{{ route('showCharge') }}">お支払い</a>
         <h2 class="mypage_name">{{ Auth::user()->name }} さん</h2>
         <div class="container">
             <div class="reservation">

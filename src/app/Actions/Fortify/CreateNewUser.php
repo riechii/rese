@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use App\Notifications\VerifyEmail;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -36,5 +37,9 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $user->sendEmailVerificationNotification();
+
+        return $user;
     }
 }

@@ -33,7 +33,7 @@
             @endcan
             @can('register')
             <div>
-                <a class="admin" href="{{route('uploadForm') }}">アップロード</a>
+                <a class="admin" href="{{route('uploadForm') }}">管理画面</a>
             </div>
             @endcan
             

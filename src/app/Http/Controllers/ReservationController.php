@@ -78,13 +78,25 @@ class ReservationController extends Controller
         return view('done');
     }
 
+    //QRコード
     public function generateQrCode($reservation_id)
     {
         $reservation = Reservation::find($reservation_id);
-        
-        $url = url("/reservation/qrcode/{$reservation_id}");
 
+        $userId = $reservation->user_id;
+        $date = $reservation->date;
+        $time = $reservation->time;
+        $number = $reservation->number;
 
-        return response(QrCode::format('png')->size(300)->generate($url))->header('Content-Type', 'image/png');
+        $data = [
+            'user_id' => $userId,
+            'date' => $date,
+            'time' => $time,
+            'number' => $number,
+        ];
+
+        $url = url("/reservation/qrcode/{$reservation_id}?data=" . urlencode(json_encode($data)));
+
+        return response(QrCode::format('png')->size(400)->generate($url))->header('Content-Type', 'image/png');
     }
 }
