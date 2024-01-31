@@ -20,7 +20,6 @@
                 </div>
                 @foreach($reservations as $index => $reservation)
                 <div class="reservation-content">
-                    
                     <div class="reservation-btn">
                         <p class="reservation-content-ttl"><i class="fa-solid fa-clock" style="font-size: 20px;"></i>　予約{{ $index + 1 }}</p>
                         <a class="reservation_qr" href="{{ route('generateQrCode', ['reservation_id' => $reservation->id]) }}">QRコード</a>
@@ -63,7 +62,6 @@
                 <div class="favorite">
                     <h3 class="favorite-ttl">お気に入り店舗</h3>
                 </div>
-                
                 <div class="shop_wrapper">
                     @foreach($favorites as $favorite)
                     <div class="shop_content">

@@ -13,7 +13,6 @@
 
 .container {
     display: flex;
-    
 }
 
 .reservation {
@@ -202,6 +201,5 @@ td {
 .reservation-ttl {
     padding-left: 20px;
     display: block;
-
 }
 }

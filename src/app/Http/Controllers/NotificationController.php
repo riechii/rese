@@ -17,7 +17,6 @@ class NotificationController extends Controller
         return view('emails.notification_form',compact('users'));
     }
 
-
     //お知らせメールの送信
     public function sendNotificationEmail(Request $request)
     {

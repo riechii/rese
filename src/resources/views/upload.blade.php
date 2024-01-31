@@ -66,7 +66,8 @@
             <table class="upload_table">
                 <tr>
                     <th><label for="area">店名:</label></th>
-                    <td><input class="upload_input" type="text" name="shop" required placeholder="店舗名" value="{{ old('shop') }}"></td>
+                    <td><input class="upload_input" type="text" name="shop" required placeholder="店舗名" value="{{ old('shop') }}">
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="area">エリア:</label></th>
@@ -75,7 +76,8 @@
                         @foreach($areas as $area)
                         <option value="{{ $area->id }}">{{ $area->area }}</option>
                         @endforeach
-                        </select></td>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="genre">ジャンル:</label></th>
@@ -84,15 +86,18 @@
                             @foreach($genres as $genre)
                             <option value="{{ $genre->id }}">{{ $genre->genre }}</option>
                                 @endforeach
-                        </select></td>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="image">画像:</label></th>
-                        <td><input class="upload_img" type="file" name="image" required></td>
+                    <td><input class="upload_img" type="file" name="image" required>
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="content">詳細:</label></th>
-                        <td><textarea class="upload_text" name="content" rows="4" required placeholder="店舗の紹介文等" >{{ old('content') }}</textarea></td>
+                    <td><textarea class="upload_text" name="content" rows="4" required placeholder="店舗の紹介文等" >{{ old('content') }}</textarea>
+                    </td>
                 </tr>
             </table>
             <div class="upload_form__button">

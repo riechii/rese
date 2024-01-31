@@ -39,8 +39,6 @@ class ReservationController extends Controller
     public function update(ReservationRequest $request)
     {
         $reservation_id = $request->input('id');
-        // dd($reservation_id);
-
         $reservation = Reservation::find($reservation_id);
 
         $reservation->update([
@@ -48,7 +46,6 @@ class ReservationController extends Controller
             'time'=> $request->time,
             'number'=> $request->number,
         ]);
-
 
         return redirect('/mypage')->with('message', '予約を変更しました');
     }

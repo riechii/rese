@@ -36,7 +36,6 @@
                 <a class="admin" href="{{route('uploadForm') }}">管理画面</a>
             </div>
             @endcan
-            
             <div class="search">
                 <form class="search_form" action="{{ route('searchArea') }}" method="get">
                     @csrf
@@ -62,7 +61,6 @@
                     @csrf
                     <button class="search-btn_submit" type="submit" value=""><i class="fa-solid fa-magnifying-glass" style="color: #a9a9a9;"></i></button>
                     <input class="search_text" type="text" name="shop" value="" placeholder="Search ...">
-
                 </form>
             </div>
         </div>

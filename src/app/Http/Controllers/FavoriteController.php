@@ -34,6 +34,5 @@ class FavoriteController extends Controller
         }
 
         return redirect($redirectPath);
-
     }
 }

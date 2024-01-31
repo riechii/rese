@@ -33,7 +33,6 @@ class ShopController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
 
-
         return view('shop_list',compact('stores','user','areas','genres'));
     }
 
@@ -50,7 +49,6 @@ class ShopController extends Controller
     //アップロード
     public function upload(UploadRequest $request)
     {
-
         $store = new Store();
         $store->shop = $request->input('shop');
         $store->area_id = $request->input('area');
@@ -63,7 +61,6 @@ class ShopController extends Controller
         $fileName = $time . '_' . $original;
         $uploadedFile->storeAs('public/images', $fileName);
 
-
         $store->image = 'storage/images/' . $fileName;
         $store->save();
 
@@ -73,7 +70,6 @@ class ShopController extends Controller
     //店舗編集フォームの表示
     public function showUploadEdit(Request $request, $id)
     {
-
         $store = Store::find($id);
         $areas = Area::all();
         $genres = Genre::all();
@@ -94,7 +90,7 @@ class ShopController extends Controller
             'genre_id'=> $request->genre,
             'content'=> $request->content,
         ]);
-        
+
         if ($request->hasFile('image')){
             $original = $request->file('image')->getClientOriginalName();
             $time = now()->format('Ymd_Hi');
@@ -103,7 +99,6 @@ class ShopController extends Controller
             $store->update(['image' => 'storage/images/' . $fileName]);
         }
         return redirect()->route('uploadForm', ['id' => $id])->with('message', '店舗情報を変更しました。');
-
     }
 
     //エリア追加
@@ -114,6 +109,7 @@ class ShopController extends Controller
 
         return redirect('/upload/form')->with('message', 'エリアを追加しました');
     }
+
     //ジャンル追加
     public function uploadGenre(GenreRequest $request)
     {
@@ -145,7 +141,6 @@ class ShopController extends Controller
         $shop = Store::all();
 
         return view('shop_list', compact('stores','areas','genres','shop'));
-
     }
 
     //ジャンル検索

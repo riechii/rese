@@ -37,7 +37,6 @@ Route::middleware(['auth'])->group(function () {
         Auth::user()->sendEmailVerificationNotification();
         return back()->with('status', 'verification-link-sent');
     } else {
-
         return redirect('/');
     }
 })->middleware(['throttle:6,1'])->name('verification.send');
@@ -52,18 +51,15 @@ Route::middleware(['auth'])->group(function () {
         if ($user && $user->hasVerifiedEmail()) {
             return view('mypage');
         }
-
         return redirect()->route('mypage-verification');
     })->name('mypage');
 });
-
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/mypage', [ShopController::class, 'mypage'])->name('mypage');
         Route::post('/mypage/delete', [ReservationController::class, 'delete'])->name('delete');
         Route::post('/mypage/update', [ReservationController::class, 'update'])->name('update');
-
 });
 
 Route::get('/', [ShopController::class, 'index'])->name('shopList');
@@ -74,7 +70,6 @@ Route::get('/upload/edit/{id}', [ShopController::class, 'showUploadEdit'])->name
 Route::post('/upload/edit/{id}', [ShopController::class, 'uploadEdit'])->name('uploadEdit');
 Route::get('/upload/reservation/{id}', [ReservationController::class, 'showReservation'])->name('showReservation');
 
-
 Route::post('/upload/area', [ShopController::class, 'uploadArea']);
 Route::post('/upload/genre', [ShopController::class, 'uploadGenre']);
 
@@ -82,7 +77,6 @@ Route::get('/user', [AuthorityController::class, 'userList'])->name('userList');
 Route::get('/user/edit/{id}', [AuthorityController::class, 'showUserEdit'])->name('showUserEdit');
 Route::post('/user/edit/{id}', [AuthorityController::class, 'userEdit'])->name('userEdit');
 Route::post('/user/revoke/{id}', [AuthorityController::class, 'revokeRoles'])->name('revokeRoles');
-
 
 Route::get('/after_menu', [ShopController::class, 'afterMenu'])->name('afterMenu');
 Route::get('/before_menu', [ShopController::class, 'beforeMenu'])->name('beforeMenu');
@@ -103,10 +97,8 @@ Route::get('/review/{store_id}', [ReviewController::class, 'review'])->name('rev
 Route::get('/charge/form', [StripeController::class, 'showCharge'])->name('showCharge');
 Route::post('/charge', [StripeController::class, 'charge'])->name('charge');
 
-
 Route::get('/notification', [NotificationController::class, 'showNotificationEmail']);
 Route::post('/notification', [NotificationController::class, 'sendNotificationEmail']);
-
 
 Route::get('/register', [CustomRegisteredUserController::class, 'create'])->middleware(['guest'])->name('register');
 

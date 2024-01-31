@@ -36,9 +36,9 @@ laravel学習のために制作しました。成果物の機能やイメージ�
 　予約のある日の当日の朝９時にリマインダーメールを来るようになっています。
 
 ## 使用技術(実行環境)
-・laravel 8.83.27
+・laravel 8.83.8
 
-・mysql 10.3.39
+・mysql 8.0.26
 
 ・PHP 7.4.9
 
@@ -65,6 +65,19 @@ laravel学習のために制作しました。成果物の機能やイメージ�
 
 DB_HOST=DBコンテナのサービス名、 DB_DATABASE、DB_USERNAME、DB_PASSWORD、docker-compose.ymlで作成したデータベース名、ユーザ名、パスワードを記述
 
+STRIPE_KEYとSTRIPE_SECRETも記述
+
+メール設定も行う
+
 ⑨localhost:80（Nginxコンテナのポートを80にした場合）にアクセスすると表示されます。
 ## aws
 awsではバックエンドをEC2、データベースをRDS(Mysql)、ストレージをS3で作成しております。
+
+54.248.71.145
+
+## 使用技術(実行環境)
+・laravel 8.83.8
+
+・mysql 8.0.35
+
+・PHP 8.0.2

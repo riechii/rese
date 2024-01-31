@@ -17,7 +17,7 @@
         </div>
         @endif
         <a class="edit_form-back" href="/upload/form">&lt;</a>
-        <form class="edit_form" action="{{ route('uploadEdit', ['id' => $store->id]) }}" method="post">
+        <form class="edit_form" action="{{ route('uploadEdit', ['id' => $store->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             <table class="edit_table">
                 <tr class="edit_table_row">
@@ -31,7 +31,8 @@
                             @foreach($areas as $area)
                             <option value="{{ $area->id }}">{{ $area->area }}</option>
                             @endforeach
-                        </select></td>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="genre">ジャンル:</label></th>
@@ -40,7 +41,8 @@
                             @foreach($genres as $genre)
                             <option value="{{ $genre->id }}">{{ $genre->genre }}</option>
                             @endforeach
-                        </select></td>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="image">画像:</label></th>
@@ -48,7 +50,8 @@
                 </tr>
                 <tr>
                     <th><label for="content">詳細:</label></th>
-                    <td><textarea class="edit_text" name="content" rows="5" required>{{$store->content}}</textarea></td>
+                    <td><textarea class="edit_text" name="content" rows="5" required>{{$store->content}}</textarea>
+                    </td>
                 </tr>
             </table>
             <div class="edit_form__button">

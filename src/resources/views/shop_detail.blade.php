@@ -39,7 +39,6 @@
                         @endforeach
                     </div>
                     <div class="confirmation">
-                        
                         <table class="confirmation_table">
                             <tr><td>Shop</td><td>{{ $store->shop }}</td></tr>
                             @if(auth()->check())
