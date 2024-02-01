@@ -20,6 +20,9 @@ laravel学習のために制作しました。成果物の機能やイメージ�
 ・予約機能
 　店舗詳細ページから予約ができます。また、マイページからは予約の変更ができます。
 
+・お気に入り登録
+　お気に入りに登録した店舗はマイページから確認できます。
+
 ・口コミ
  ５段階評価の口コミの閲覧ができます。また、その店舗を予約した方のみ予約時間が過ぎたら口コミの投稿ができます。
 
@@ -63,17 +66,17 @@ laravel学習のために制作しました。成果物の機能やイメージ�
 
 ⑧.envの設定を変える
 
-⑨テーブル作成　$ php artisan migrate
-
-⑩ダミーデータの作成　$ php artisan db:seed
-
 DB_HOST=DBコンテナのサービス名、 DB_DATABASE、DB_USERNAME、DB_PASSWORD、docker-compose.ymlで作成したデータベース名、ユーザ名、パスワードを記述
 
 STRIPE_KEYとSTRIPE_SECRETも記述
 
 メール設定も行う
 
-⑨localhost:80（Nginxコンテナのポートを80にした場合）にアクセスすると表示されます。
+⑨テーブル作成　$ php artisan migrate
+
+⑩ダミーデータの作成　$ php artisan db:seed
+
+localhost:80（Nginxコンテナのポートを80にした場合）にアクセスすると表示されます。
 ## aws
 awsではバックエンドをEC2、データベースをRDS(Mysql)、ストレージをS3で作成しております。
 
