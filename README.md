@@ -51,17 +51,21 @@ laravel学習のために制作しました。成果物の機能やイメージ�
 
 ②$ git clone git@github.com:riechii/rese.git .
 
-③.evnの作成　$ cp .env.sample .env
+③$ docker-compose up -d --build
 
 ④Dockerのコンテナに入る $ docker-compose exec php bash
 
 ⑤composerをインストール　$ composer install
 
-⑥$ ls でartisanディレクトリがあることを確認
+⑥.evnの作成　$ cp .env.example .env
 
 ⑦APP_KEYを作成　$ php artisan key:generate
 
 ⑧.envの設定を変える
+
+⑨テーブル作成　$ php artisan migrate
+
+⑩ダミーデータの作成　$ php artisan db:seed
 
 DB_HOST=DBコンテナのサービス名、 DB_DATABASE、DB_USERNAME、DB_PASSWORD、docker-compose.ymlで作成したデータベース名、ユーザ名、パスワードを記述
 
