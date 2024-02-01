@@ -1,7 +1,2 @@
 docker/mysql/data/*
 !.gitkeep
-
-/public/images/*
-/public/icons/*
-!/public/images/.gitkeep
-!/public/icons/no/.gitkeep
