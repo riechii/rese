@@ -105,6 +105,18 @@
             </div>
         </form>
     </div>
+    @can('creation')
+        <div class="csv">
+            <div class="csv_ttl">
+                <h2>店舗情報をcsvでインポートする</h2>
+            </div>
+            <form action="/import" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input class="csv_input" type="file" name="csv_file">
+                    <button class="csv_submit" type="submit">インポート</button>
+            </form>
+        </div>
+    @endcan
     <div class="mail">
         <div class="mail_ttl">
             <h2>お知らせメールを送る</h2>

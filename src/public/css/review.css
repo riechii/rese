@@ -66,6 +66,14 @@
 
 .message {
     margin-left: 30px;
+    color: red;
+}
+
+.review_delete__btn__submit {
+    background-color: #fff;
+    border: #fff;
+    cursor: pointer;
+    border-bottom: solid 1px #a9a9a9;
 }
 
 @media screen and (max-width: 767px){

@@ -33,6 +33,26 @@
     display: inline-block;
 }
 
+.sort {
+    display: flex;
+    background-color: #fff;
+    height: 35px;
+    margin-top: 35px;
+    box-shadow: 5px 5px 3px #a9a9a9;
+    border-radius: 3px;
+}
+
+.sort_content {
+    margin-top: 7px;
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+.sort_select {
+    margin-top: 8px;
+    border: #fff solid 1px;
+}
+
 .search {
     text-align: right;
     justify-content: center;
@@ -180,5 +200,17 @@
     height: 270PX;
     margin-right: 20px;
     margin-bottom: 20px;
+}
+
+.sort {
+    width: 200px;
+}
+
+.sort_select {
+    margin-left: 20px;
+}
+
+.sort_content {
+    margin-left: 10px;
 }
 }

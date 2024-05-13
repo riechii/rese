@@ -12,6 +12,7 @@
 
 .shop_content {
     width: 50%;
+    margin: 0 10px;
 }
 
 .shop_ttl {
@@ -34,13 +35,68 @@
     margin: 10px;
 }
 
+.shop_group {
+    margin-right: 20px;
+}
+
+.shop_group_text {
+    margin-top: 0;
+}
+
 .shop_group_tg {
     display: flex;
 }
 
+.shop_group_review {
+    color: #000;
+}
+
+.shop_group_all_review {
+    width: 100%;
+    height: 30px;
+    display: block;
+    background-color: #3366ff;
+    text-align: center;
+    padding-top: 5px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.my_review_content {
+    display: flex;
+    justify-content: flex-end;
+    border-top: solid 1px #a9a9a9;
+    margin-top: 20px;
+}
+
+.my_review_edit {
+    margin-top: 20px;
+    margin-right: 20px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: #000 solid 1px;
+    font-size: 13px;
+}
+
+.review_delete__btn__submit {
+    margin-top: 20px;
+    margin-right: 20px;
+    border: #a9a9a9;
+    cursor: pointer;
+    border-bottom: #000 solid 1px;
+    font-size: 13px;
+}
+
+.review_comment {
+    border-bottom: solid 1px #a9a9a9;
+    padding-bottom: 20px;
+}
+
 .reservation {
     width: 45%;
-    height: 500px;
+    height: 550px;
     background-color: #3366ff;
     color: #fff;
     box-shadow: 5px 5px 3px #a9a9a9;
@@ -102,7 +158,7 @@ td {
 .reservation__btn__submit {
     color: #fff;
     background-color: blue;
-    margin-top: 155px;
+    margin-top: 200px;
     border: 2px solid blue;
     padding: 10px 0;
     border-radius: 0 0 5px 5px;

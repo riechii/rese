@@ -5,12 +5,9 @@
 @endsection
 @section('content')
     <div class="review">
-        <a class="review_back" href="/">&lt;</a>
+        <a class="review_back" href="{{ url()->previous() }}">&lt;</a>
         <div class="review_content">
             <h2 class="review_ttl">評価と口コミ - {{ $store->shop}} -</h2>
-            @if($hasReservation and $reservation->date <= now() and $reservation->time <= now())
-                <a class="review_link" href="{{ route('showReviewForm', ['store_id' => $store->id]) }}">口コミを書く</a>
-            @endif
         </div>
         <div class="message">
             @if(session('message'))
@@ -23,16 +20,33 @@
             <table class="review_table">
                 <tr class="review_row"><td class="review_td">
                     @for ($i = 1; $i <= $review->evaluation; $i++)
-                        <i class="fas fa-star" style="color: #ffd700; font-size: 25px;"></i>
+                        <i class="fas fa-star" style="color: #3366ff; font-size: 25px;"></i>
                     @endfor
-                </td><td class="review_time">{{ $review->created_at->format('Y-m-d')}}</td></tr>
+                </td><td class="review_time">
+                    @if (auth()->check())
+                        @if (auth()->user()->hasRole('admin') || $review->user_id === auth()->id())
+                            <form class="review_delete" action="{{ route('deleteReview', ['review_id' => $review->id]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="review_delete__btn__submit" type="submit" value="">口コミを削除</button>
+                            </form>
+                        @endif
+                    @endif
+                </td></tr>
                 <tr class="review_row"><td class="review_td">{{ $review->comment }}</td></tr>
+                <tr class="review_row">
+                    <td class="review_td" colspan="2">
+                        @if($review->image)
+                            <img src="{{ asset($review->image) }}" alt="" style="max-width: 80%;">
+                        @endif
+                    </td>
+                </tr>
             </table>
         </div>
         @endforeach
         @else
-        <p class="not_review">口コミはありません</p>
+            <p class="not_review">口コミはありません</p>
         @endif
-        {{$reviews->links()}}
+            {{$reviews->links()}}
     </div>
 @endsection

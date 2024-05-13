@@ -36,6 +36,18 @@
                 <a class="admin" href="{{route('uploadForm') }}">管理画面</a>
             </div>
             @endcan
+            <div class="sort">
+                <div class="sort_content">並び替え:</div>
+                <form class="sort_form" action="{{ route('sort') }}" method="get">
+                    @csrf
+                    <select class="sort_select" name="sort" onchange="this.form.submit()">
+                        <option value="" selected disabled>評価高/低</option>
+                        <option value="random">ランダム</option>
+                        <option value="high_evaluation">評価が高い順</option>
+                        <option value="low_evaluation">評価が低い順</option>
+                    </select>
+                </form>
+            </div>
             <div class="search">
                 <form class="search_form" action="{{ route('searchArea') }}" method="get">
                     @csrf

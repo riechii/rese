@@ -19,6 +19,7 @@ class CreateReviewsTable extends Migration
             $table->foreignId('store_id')->constrained()->cascadeOnDelete();
             $table->integer('evaluation')->nullable();
             $table->text('comment')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

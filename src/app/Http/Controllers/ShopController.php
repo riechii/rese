@@ -9,12 +9,14 @@ use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Reservation;
 use App\Models\Favorite;
+use App\Models\Review;
 use App\Http\Requests\UploadRequest;
 use App\Http\Requests\AreaRequest;
 use App\Http\Requests\GenreRequest;
 use App\Http\Requests\UploadEditRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Validator;
 
 class ShopController extends Controller
 {
@@ -36,7 +38,7 @@ class ShopController extends Controller
         return view('shop_list',compact('stores','user','areas','genres'));
     }
 
-    //アップロード画面表示
+    //管理画面表示
     public function uploadForm()
     {
         $areas = Area::all();
@@ -46,7 +48,7 @@ class ShopController extends Controller
         return view('upload', compact('areas','genres','stores'));
     }
 
-    //アップロード
+    //店舗情報の追加
     public function upload(UploadRequest $request)
     {
         $store = new Store();
@@ -170,10 +172,17 @@ class ShopController extends Controller
     public function detail($shop_id)
     {
         $store = Store::find($shop_id);
-        // $reservation = Reservation::all();
         $reservation = auth()->check() ? auth()->user()->reservations->where('store_id', $shop_id)->first() : null;
 
-        return view('shop_detail', compact('shop_id','store','reservation'));
+        $userReviewExists = Review::where('store_id', $shop_id)
+                            ->where('user_id', auth()->id())
+                            ->exists();
+
+        $review = Review::where('store_id', $shop_id)
+                ->where('user_id', auth()->id())
+                ->first();
+
+        return view('shop_detail', compact('shop_id','store','reservation','userReviewExists','review'));
     }
 
     //マイページ
@@ -185,5 +194,97 @@ class ShopController extends Controller
         $reservations = $user->reservations;
 
         return view('mypage', compact('reservations','user','favorites'));
+    }
+
+    //ソート機能
+    public function sort(Request $request)
+    {
+        $sortType = $request->input('sort');
+
+        switch ($sortType) {
+        case 'random':
+            $stores = Store::inRandomOrder()->get();
+            break;
+        case 'high_evaluation':
+            $stores = Store::leftJoin('reviews', 'stores.id', '=', 'reviews.store_id')
+                    ->selectRaw('stores.*, AVG(reviews.evaluation) as avg_evaluation')
+                    ->groupBy('stores.id')
+                    ->orderByDesc('avg_evaluation')
+                    ->get();
+            break;
+        case 'low_evaluation':
+            $stores = Store::leftJoin('reviews', 'stores.id', '=', 'reviews.store_id')
+                    ->selectRaw('stores.*, AVG(reviews.evaluation) as avg_evaluation')
+                    ->groupBy('stores.id')
+                    ->orderByRaw('ISNULL(avg_evaluation), avg_evaluation')
+                    ->get();
+            break;
+        default:
+            $stores = Store::orderBy('created_at', 'desc')->get();
+            break;
+        }
+
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        return view('shop_list', compact('stores','areas','genres'));
+    }
+
+    //svcインポート
+    public function import(Request $request)
+    {
+        $file = $request->file('csv_file');
+        $errors = [];
+
+        if (($handle = fopen($file->getRealPath(), "r")) !== FALSE) {
+            fgetcsv($handle, 1000, ",");
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                $validator = Validator::make($data, [
+                    '0' => 'required|max:50',
+                    '1' => 'required|in:東京都,大阪府,福岡県',
+                    '2' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
+                    '3' => 'required|max:400',
+                    '4' => [
+                        'required',
+                        'url',
+                        function ($attribute, $value, $fail) {
+                            $ext = pathinfo($value, PATHINFO_EXTENSION);
+                        if (!in_array(strtolower($ext), ['jpeg', 'jpg', 'png'])) {
+                            $fail('4にはjpeg、jpg、pngのファイルを指定してください。');
+                            }
+                        },
+                    ],
+                ]);
+
+                if ($validator->fails()) {
+                    $errors[] = $validator->errors()->all();
+                } else {
+                    $shop = new Store;
+                    $shop->shop = $data[0];
+                    $shop->area_id = $this->getAreaId($data[1]);
+                    $shop->genre_id = $this->getGenreId($data[2]);
+                    $shop->content = $data[3];
+                    $shop->image = $data[4];
+                    $shop->save();
+                }
+            }
+            fclose($handle);
+        }
+        if (!empty($errors)) {
+            return redirect()->back()->withErrors($errors);
+        } else {
+            return redirect()->back()->with('message', 'CSVファイルのインポートが成功しました。');
+        }
+    }
+    private function getAreaId($area)
+    {
+        $areaModel = Area::where('area', $area)->first();
+        return $areaModel ? $areaModel->id : null;
+    }
+
+    private function getGenreId($genre)
+    {
+        $genreModel = Genre::where('genre', $genre)->first();
+        return $genreModel ? $genreModel->id : null;
     }
 }

@@ -1,78 +1,247 @@
 .review_form {
-    width: 100%;
-    height: 100%;
     background-color: #EEEEEE;
-    padding: 10px 20px;
-    padding-bottom: 200px;
+    padding-top: 50px;
+    display: flex;
 }
 
-.review_form-back {
-    border: 1px solid #EEEEEE;
+.review_store {
+    width: 40%;
+}
+
+.review_store_text {
+    text-align: center;
+    font-size: 40px;
+    padding: 0 60px;
+}
+
+.review {
+    width: 57%;
+}
+
+.partition {
+    border-left: 1px solid #000;
+    margin: 70px 0;
+    width: 3%;
+}
+
+.shop {
+    width: 100%;
+    background-color: #EEEEEE;
+    padding: 0 20px;
+}
+
+.shop_content {
     background-color: #fff;
-    text-decoration: none;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    margin: 10px;
-    margin-left: 40px;
+    border-radius: 3px;
     box-shadow: 5px 5px 3px #a9a9a9;
-    border-radius: 5px;
-    display: inline-block;
-}
-
-.review_form-ttl {
-    text-align: center;
-    justify-content: center;
-}
-
-.review_form-post {
+    width: 250px;
+    height: 270PX;
+    margin-right: 20px;
+    margin-bottom: 20px;
     margin: 0 auto;
 }
 
-.review_form-radio {
-    width: 20%;
-    margin: 0 auto;
-    text-align: left;
-    margin-bottom: 10px;
+.shop_img {
+    width: 250px;
+    height: auto;
 }
 
-.review_form-radio>label {
-    display: block;
+.shop_name {
+    margin: 5px 0 0 10px;
 }
+
+.shop_tag {
+    display: flex;
+    font-size: 12px;
+}
+
+.shop_area {
+    margin-top: 0;
+    margin-left: 10px;
+}
+
+.shop_genre {
+    margin-top: 0;
+    margin-left: 5px;
+}
+
+.shop_btn {
+    display: flex;
+}
+
+.shop_detail-btn_submit {
+    background-color: #3366ff;
+    color: #fff;
+    border-radius: 3px;
+    border: 1px solid #3366ff;
+    padding: 3px 10px;
+    margin: 0 10px 10px 10px;
+    text-decoration: none;
+}
+
+.shop_detail-btn_reviews {
+    background-color: #3366ff;
+    color: #fff;
+    border-radius: 3px;
+    border: 1px solid #3366ff;
+    padding: 3px 10px;
+    text-decoration: none;
+}
+
+.shop_favorite-btn_submit {
+    border: 1px solid #fff;
+    background-color: #fff;
+    margin-left: 70px;
+}
+
+.review_text {
+    font-size: 23px;
+
+}
+
+.review_text_comment {
+    width: 90%;
+    height: 120px;
+    padding: 10px;
+    background-color: #EEEEEE;
+    font-size: 15px;
+}
+
+.char-count {
+    text-align: right;
+    margin-right: 60px;
+    font-size: 12px;
+}
+
+
+
+
 
 .review_form-star {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.review_form-star input[type=radio] {
+    display: none;
+}
+
+.review_form-star label {
+    position: relative;
+    padding: 0 5px;
+    color: #ccc;
     cursor: pointer;
+    font-size: 35px;
 }
 
-.review_form_text {
+.review_form-star label:hover {
+    color: #3366ff;
+}
+
+.review_form-star label:hover~label {
+    color: #3366ff;
+}
+
+.review_form-star input[type=radio]:checked~label {
+    color: #3366ff;
+}
+
+.upload-area {
+    width: 90%;
+    height: 120px;
+    position: relative;
+    border: 1px solid #fff;
+    background-color: #fff;
+}
+
+.upload-area_message {
+    width: 100%;
+    position: absolute;
+    top: 30px;
+    left: 30%;
+    opacity: .8;
+    font-size: 15px;
+}
+
+.upload-area_comment {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 30%;
+    opacity: .8;
+    font-size: 12px;
+}
+
+#input-files {
+    top: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.review_form__button {
+    background-color: #EEEEEE;
     text-align: center;
-    justify-content: center;
+    padding: 30px 0;
 }
 
-.review_form__btn {
-    text-align: center;
-    justify-content: center;
+.review_form__button_submit {
+    width: 400px;
+    height: 40px;
+    border: solid 1px #fff;
+    background-color: #fff;
+    border-radius: 25px;
 }
 
-.review_form__btn__submit {
-    color: #fff;
-    background-color: #3366ff;
-    border: solid 1px #3366ff;
-    border-radius: 3px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
+
+
+
 
 @media screen and (max-width: 767px){
 
-.review_form-radio {
-    width: 50%;
-    margin: 0 auto;
-    text-align: left;
-    margin-bottom: 10px;
+.review_form {
+    display: block;
 }
 
-.review_form_textarea {
+.review_store_text {
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+}
+
+.review_store {
+    width: 100%;
+}
+
+.review {
+    width: 100%;
+    text-align: center;
+}
+
+.review_form-star {
+    justify-content: center;
+}
+
+.char-count {
+    margin-right: 20px;
+}
+
+.upload-area {
+    margin: 0 auto;
+}
+
+.upload-area_message {
+    left: 0;
+}
+
+.upload-area_comment {
+    left: 0;
+}
+
+.review_form__button_submit {
     width: 90%;
 }
 }

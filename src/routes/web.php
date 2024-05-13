@@ -65,6 +65,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/', [ShopController::class, 'index'])->name('shopList');
 Route::get('/upload/form', [ShopController::class, 'uploadForm'])->name('uploadForm');
 Route::post('/upload', [ShopController::class, 'upload'])->name('upload');
+Route::post('/import', [ShopController::class, 'import'])->name('import');
 
 Route::get('/upload/edit/{id}', [ShopController::class, 'showUploadEdit'])->name('showUploadEdit');
 Route::post('/upload/edit/{id}', [ShopController::class, 'uploadEdit'])->name('uploadEdit');
@@ -80,6 +81,8 @@ Route::post('/user/revoke/{id}', [AuthorityController::class, 'revokeRoles'])->n
 
 Route::get('/after_menu', [ShopController::class, 'afterMenu'])->name('afterMenu');
 Route::get('/before_menu', [ShopController::class, 'beforeMenu'])->name('beforeMenu');
+
+Route::get('/sort', [ShopController::class, 'sort'])->name('sort');
 Route::get('/search', [ShopController::class, 'searchArea'])->name('searchArea');
 Route::get('/search/genre', [ShopController::class, 'searchGenre'])->name('searchGenre');
 Route::get('/search/shop', [ShopController::class, 'searchShop'])->name('searchShop');
@@ -93,6 +96,7 @@ Route::get('/thanks', [ShopController::class, 'thanks'])->name('thanks');
 Route::get('/review/form/{store_id}', [ReviewController::class, 'showReviewForm'])->name('showReviewForm');
 Route::post('/review/form', [ReviewController::class, 'reviewForm']);
 Route::get('/review/{store_id}', [ReviewController::class, 'review'])->name('review');
+Route::delete('/reviews/{review_id}', [ReviewController::class, 'deleteReview'])->name('deleteReview');
 
 Route::get('/charge/form', [StripeController::class, 'showCharge'])->name('showCharge');
 Route::post('/charge', [StripeController::class, 'charge'])->name('charge');

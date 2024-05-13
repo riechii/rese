@@ -158,6 +158,25 @@
     margin-top: 10px;
 }
 
+.csv {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.csv_ttl {
+    text-align: center;
+}
+
+.csv_submit {
+    color: #fff;
+    background-color: #3366ff;
+    border: solid 1px #3366ff;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
 .mail {
     text-align: center;
     margin-top: 40px;
