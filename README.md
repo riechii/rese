@@ -62,7 +62,8 @@ laravel学習のために制作しました。成果物の機能やイメージ�
 ・PHP 7.4.9
 
 ## テーブル設計
-![Rese_table](https://github.com/riechii/rese/blob/main/Rese_table.png)
+![Rese_table](https://github.com/riechii/rese/blob/main/rese_table.png)
+
 ## ER図
 ![Rese_er](https://github.com/riechii/rese/blob/main/Rese_er.png)
 ## 環境構築
