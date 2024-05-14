@@ -115,6 +115,7 @@ awsではバックエンドをEC2、データベースをRDS(Mysql)、ストレ�
 
 ## csvファイル記述方法
 （例）
+
 店舗名,地域,ジャンル,店舗概要,画像URL
 寿司の店A,東京都,寿司,ここに店舗概要を入力してください,https://example.com/sushi.png
 ラーメン屋B,大阪府,ラーメン,ここに店舗概要を入力してください,https://example.com/ramen.png
