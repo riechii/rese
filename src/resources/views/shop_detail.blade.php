@@ -29,7 +29,9 @@
                         <p class="shop_group_tg_genre">#{{ $store->genre->genre }}</p>
                     </div>
                     <p class="shop_group_text">{{ $store->content }}</p>
+                    @if($store->reviews->count() > 0)
                     <a class="shop_group_all_review" href="{{ route('review', ['store_id' => $store->id]) }}">全ての口コミ情報</a>
+                    @endif
                     @if (auth()->check())
                         @if (!$userReviewExists && !auth()->user()->hasRole('admin') && !auth()->user()->hasRole('manager'))
                             <a class="shop_group_review" href="{{ route('showReviewForm', ['store_id' => $store->id]) }}">口コミを投稿する</a>

@@ -14,6 +14,7 @@ use App\Http\Requests\UploadRequest;
 use App\Http\Requests\AreaRequest;
 use App\Http\Requests\GenreRequest;
 use App\Http\Requests\UploadEditRequest;
+use App\Http\Requests\ImportCsvRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Validator;
@@ -230,8 +231,8 @@ class ShopController extends Controller
         return view('shop_list', compact('stores','areas','genres'));
     }
 
-    //svcインポート
-    public function import(Request $request)
+    //csvインポート
+    public function import(ImportCsvRequest $request)
     {
         $file = $request->file('csv_file');
         $errors = [];
@@ -249,8 +250,8 @@ class ShopController extends Controller
                         'url',
                         function ($attribute, $value, $fail) {
                             $ext = pathinfo($value, PATHINFO_EXTENSION);
-                        if (!in_array(strtolower($ext), ['jpeg', 'jpg', 'png'])) {
-                            $fail('4にはjpeg、jpg、pngのファイルを指定してください。');
+                        if (!in_array(strtolower($ext), ['jpeg', 'png'])) {
+                            $fail('4にはjpeg、pngのファイルを指定してください。');
                             }
                         },
                     ],

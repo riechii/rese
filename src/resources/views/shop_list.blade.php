@@ -91,9 +91,6 @@
                     <div>
                         <a class="shop_detail-btn_submit" href="{{ route('detail',['shop_id' => $store->id]) }}">詳しく見る</a>
                     </div>
-                    <div>
-                        <a class="shop_detail-btn_reviews" href="{{ route('review', ['store_id' => $store->id]) }}">口コミ</a>
-                    </div>
                     <form action="/favorite" method="post">
                         @csrf
                         <input type="hidden" name="store_id" value="{{ $store->id }}">

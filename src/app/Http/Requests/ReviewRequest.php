@@ -29,11 +29,23 @@ class ReviewRequest extends FormRequest
         ];
     }
 
+    public function withValidator($validator)
+    {
+        $validator->addExtension('image_extension', function ($attribute, $value, $parameters) {
+            $extension = $value->getClientOriginalExtension();
+            return in_array(strtolower($extension), ['jpeg', 'png']);
+        });
+
+        $validator->sometimes('image', 'image_extension', function ($input) {
+            return $input->hasFile('image');
+        });
+    }
+
     public function messages()
     {
         return [
             'comment.max' => '文字数は最高400字までです。',
-            'image.mimes' => 'jpeg、pngのみアップロード可能です。',
+            'image.image_extension' => 'jpeg、pngのみアップロード可能です。',
         ];
     }
 }

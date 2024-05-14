@@ -7,6 +7,13 @@
     @csrf
     <div class="review_form">
         <div class="review_store">
+            @if ($errors->any())
+                <div class="upload__alert--danger">
+                    @foreach ($errors->all() as $error)
+                    {{ $error }}
+                    @endforeach
+                </div>
+            @endif
             <p class="review_store_text">今回のご利用はいかがでしたか？</p>
             <div class ="shop">
                 <div class="shop_content">
@@ -49,7 +56,7 @@
                     {{ $message }}
                 @enderror
             </div>
-            <textarea class="review_text_comment" name="comment" id="" cols="30" rows="10" placeholder="カジュアルな夜におすすめのスポット">@if ($review){{ $review->comment }}@endif</textarea>
+            <textarea class="review_text_comment" name="comment" id="" cols="30" rows="10" placeholder="カジュアルな夜におすすめのスポット">{{ old('comment', isset($review) ? $review->comment : '') }}</textarea>
             <div class="char-count">{{ mb_strlen($review->comment ?? '') }}/400 (最高文字数)</div>
             <p class="review_text">画像の追加</p>
             <div class="upload-area">

@@ -98,4 +98,8 @@
     display: block;
     margin: 0 auto;
 }
+
+.review_delete__btn__submit {
+    font-size: 10px;
+}
 }

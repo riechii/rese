@@ -15,11 +15,8 @@ class ReviewController extends Controller
         $store = Store::find($store_id);
 
         $reviews = Review::where('store_id', $store_id)->paginate(10);
-        $hasReservation = $store->reservations()->where('user_id', auth()->id())->exists();
-        $reservation = $hasReservation ? $store->reservations()->where('user_id', auth()->id())->first() : null;
 
-
-        return view('review', compact('store', 'reviews', 'hasReservation', 'reservation'));
+        return view('review', compact('store', 'reviews'));
     }
 
     //口コミ投稿欄表示

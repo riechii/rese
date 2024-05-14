@@ -161,7 +161,7 @@
 .shop_favorite-btn_submit {
     border: 1px solid #fff;
     background-color: #fff;
-    margin-left: 10px;
+    margin-left: 60px;
 }
 
 @media screen and (max-width: 767px){
@@ -189,7 +189,6 @@
     display: flex;
     flex-wrap: wrap;
     padding-left: 60px;
-
 }
 
 .shop_content {
